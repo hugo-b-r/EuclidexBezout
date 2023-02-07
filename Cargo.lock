@@ -3,5 +3,5 @@
 version = 3
 
 [[package]]
-name = "EuclidexBezout"
+name = "euclide_x_bezout"
 version = "0.1.0"
