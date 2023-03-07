@@ -4,6 +4,17 @@ struct Brique {
     type_operation: TypeOperation,
 }
 
+impl Brique {
+    fn new() -> Self {
+        Brique {
+            briques: Vec::new(),
+            nombres: Vec::new(),
+            type_operation: TypeOperation::default(),
+        }
+    }
+}
+
+
 enum TypeOperation {
     Produit,
     Somme,
@@ -24,6 +35,7 @@ impl AlgoEuclide {
         }
     }
 }
+
 
 #[cfg(test)]
 mod tests {
