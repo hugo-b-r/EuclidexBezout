@@ -3,3 +3,8 @@ struct Brique {
     nombres: Vec<f64>,
     type_operation: TypeOperation,
 }
+
+enum TypeOperation {
+    Produit,
+    Somme,
+}
