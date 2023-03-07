@@ -40,6 +40,28 @@ impl AlgoEuclide {
             lignes: Vec::new(),
         }
     }
+
+    fn compute(mut self: Self) {
+        let (mut quotient, mut reste) = division_euclidienne(self.a, self.b);
+        let mut ligne = Brique::new(); 
+        while reste != 0 {
+            ligne = Brique {
+                briques: vec![Brique {
+                    briques: Vec::new(),
+                    nombres: vec![self.b as f64, quotient as f64],
+                    type_operation: TypeOperation::Produit,
+                }],
+                nombres: vec![reste as f64],
+                type_operation: TypeOperation::Somme,
+            };
+            self.lignes.push(ligne);
+
+            self.a = self.b;
+            self.b = reste;
+            (quotient, reste) = division_euclidienne(self.a, self.b);
+        }
+
+    }
 }
 
 fn division_euclidienne(mut a: i32, mut b: i32) -> (i32, i32) {
