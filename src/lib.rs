@@ -8,3 +8,9 @@ enum TypeOperation {
     Produit,
     Somme,
 }
+
+struct AlgoEuclide {
+    a: i32,
+    b: i32,
+    lignes: Vec<Brique>, 
+}
