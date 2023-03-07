@@ -42,6 +42,17 @@ impl AlgoEuclide {
     }
 }
 
+fn division_euclidienne(mut a: i32, mut b: i32) -> (i32, i32) {
+    if b > a {
+        b += a;
+        a = b - a;
+        b = b - a;
+    }
+    let quotient = a/b;
+    let reste = a-(b*quotient);
+    (quotient, reste)
+}
+
 
 #[cfg(test)]
 mod tests {
