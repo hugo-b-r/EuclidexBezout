@@ -26,7 +26,7 @@ impl Default for TypeOperation {
     }
 }
 
-struct AlgoEuclide {
+pub struct AlgoEuclide {
     a: i32,
     b: i32,
     lignes: Vec<Brique>, 
@@ -35,34 +35,56 @@ struct AlgoEuclide {
 impl AlgoEuclide {
     fn new(a: i32, b:i32) -> Self {
         AlgoEuclide {
-            a,
-            b,
+            a: a,
+            b: b,
             lignes: Vec::new(),
         }
     }
 
-    fn compute(mut self: Self) {
+    pub fn compute(mut self: Self) -> Self {
         let (mut quotient, mut reste) = division_euclidienne(self.a, self.b);
-        let mut ligne = Brique::new(); 
-        while reste != 0 {
+        let mut ligne = Brique::new();
+        let mut output = self; 
+        while {
             ligne = Brique {
                 briques: vec![Brique {
                     briques: Vec::new(),
-                    nombres: vec![self.b as f64, quotient as f64],
+                    nombres: vec![output.b as f64, quotient as f64],
                     type_operation: TypeOperation::Produit,
                 }],
                 nombres: vec![reste as f64],
                 type_operation: TypeOperation::Somme,
             };
-            self.lignes.push(ligne);
+            output.lignes.push(ligne);
 
-            self.a = self.b;
-            self.b = reste;
-            (quotient, reste) = division_euclidienne(self.a, self.b);
-        }
+            output.a = output.b;
+            output.b = reste;
+            if reste != 0 {
+                (quotient, reste) = division_euclidienne(output.a, output.b);
+            }
+            reste != 0
+        } {}
+        output
 
     }
+
+    pub fn print(self: Self) -> String{
+        let mut a = self.a;
+        let mut b = self.b;
+        let mut quotient = self.lignes[0].briques[0].nombres[1];
+        let mut reste = self.lignes[0].nombres[0];
+        let mut output = String::default();
+        for ligne in self.lignes {
+            output.push_str(format!("{} = {} x {} + {}", a, b, quotient, reste).as_str());
+            a = b;
+            b = reste as i32;
+            quotient = ligne.briques[0].nombres[1];
+            reste = ligne.nombres[0];
+        }
+        output
+    }
 }
+
 
 fn division_euclidienne(mut a: i32, mut b: i32) -> (i32, i32) {
     if b > a {
@@ -92,7 +114,8 @@ mod tests {
 
     #[test]
     fn test_algo_euclide_2() {
-        let algorithme = AlgoEuclide::new(1, 2).compute();
+        let mut algorithme: AlgoEuclide = AlgoEuclide::new(1, 2);
+        algorithme = algorithme.compute();
         assert_eq!(algorithme.print(), "2 = 1 x 2 + 0".to_string())
     }
 }
