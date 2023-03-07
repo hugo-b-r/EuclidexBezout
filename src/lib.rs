@@ -56,4 +56,10 @@ mod tests {
         };
         assert_eq!(result, true);
     }
+
+    #[test]
+    fn test_algo_euclide_2() {
+        let algorithme = AlgoEuclide::new(1, 2).compute();
+        assert_eq!(algorithme.print(), "2 = 1 x 2 + 0".to_string())
+    }
 }
