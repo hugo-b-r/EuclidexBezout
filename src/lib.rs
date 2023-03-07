@@ -31,12 +31,11 @@ mod tests {
     #[test]
     fn test_algo_euclide() { //teste la creation algorithem d'euclide
         let algorithme = AlgoEuclide::new(0, 0);
-        let mut result = bool::default();
-        if algorithme.a == 0 && algorithme.b == 0 {
-            result = true;
+        let result = if algorithme.a == 0 && algorithme.b == 0 {
+            true
         } else {
-            result = false;
-        }
+            false
+        };
         assert_eq!(result, true);
     }
 }
