@@ -20,6 +20,12 @@ enum TypeOperation {
     Somme,
 }
 
+impl Default for TypeOperation {
+    fn default() -> Self{
+        TypeOperation::Somme
+    }
+}
+
 struct AlgoEuclide {
     a: i32,
     b: i32,
