@@ -124,7 +124,7 @@ fn division_euclidienne(mut a: i32, mut b: i32) -> (i32, i32) {
 
 #[cfg(test)]
 mod tests {
-    use crate::AlgoEuclide;
+    use crate::{AlgoEuclide, TypeOperation};
     #[test]
     fn test_algo_euclide() { //teste la creation algorithem d'euclide
         let algorithme = AlgoEuclide::new(0, 0);
@@ -142,4 +142,18 @@ mod tests {
         algorithme = algorithme.compute();
         assert_eq!(algorithme.print(), "2 = 1 x 2 + 0".to_string())
     }
-}
+
+    use crate::Brique;
+    #[test]
+    fn brique_print() {
+        let brique = Brique {
+            briques: vec![ Brique {
+                briques: Vec::new(),
+                nombres: vec![2.0, 5.0],
+                type_operation: TypeOperation::Produit,
+            }],
+            nombres: vec![5.0, 2.0],
+            type_operation: TypeOperation::Produit,
+        };
+        assert_eq!(brique.print(), "2.0 x 5.0 x 5.0 x 2.0");
+    }}
