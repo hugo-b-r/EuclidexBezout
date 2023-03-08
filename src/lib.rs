@@ -156,5 +156,5 @@ mod tests {
             nombres: vec![5.0, 2.0],
             type_operation: TypeOperation::Produit,
         };
-        assert_eq!(brique.print(), "2.0 x 5.0 x 5.0 x 2.0");
+        assert_eq!(brique.print(), "(2 x 5) x 5 x 2");
     }}
