@@ -1,0 +1,36 @@
+#[cfg(test)]
+mod tests {
+    use euclide_x_bezout::{AlgoEuclide, TypeOperation};
+    #[test]
+    fn test_algo_euclide() { //teste la creation algorithem d'euclide
+        let algorithme = AlgoEuclide::new(0, 0);
+        let result = if algorithme.a == 0 && algorithme.b == 0 {
+            true
+        } else {
+            false
+        };
+        assert_eq!(result, true);
+    }
+
+    #[test]
+    fn test_algo_euclide_2() {
+        let mut algorithme: AlgoEuclide = AlgoEuclide::new(2, 1);
+        algorithme = algorithme.compute();
+        assert_eq!(algorithme.print(), "2 = 1 x 2 + 0".to_string())
+    }
+
+    use euclide_x_bezout::Brique;
+    #[test]
+    fn brique_print() {
+        let brique = Brique {
+            briques: vec![ Brique {
+                briques: Vec::new(),
+                nombres: vec![2.0, 5.0],
+                type_operation: TypeOperation::Produit,
+            }],
+            nombres: vec![5.0, 2.0],
+            type_operation: TypeOperation::Produit,
+        };
+        assert_eq!(brique.print(), "(2 x 5) x 5 x 2");
+    }
+}

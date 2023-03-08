@@ -1,12 +1,12 @@
 #[derive(Clone)]
-struct Brique {
-    briques: Vec<Brique>,
-    nombres: Vec<f64>,
-    type_operation: TypeOperation,
+pub struct Brique {
+    pub briques: Vec<Brique>,
+    pub nombres: Vec<f64>,
+    pub type_operation: TypeOperation,
 }
 
 impl Brique {
-    fn new() -> Self {
+    pub fn new() -> Self {
         Brique {
             briques: Vec::new(),
             nombres: Vec::new(),
@@ -14,7 +14,7 @@ impl Brique {
         }
     }
 
-    fn print(self: Self) -> String{
+    pub fn print(self: Self) -> String{
         let mut output: String = "".to_string();
         let symbol = match self.type_operation {
             TypeOperation::Somme => " + ",
@@ -36,7 +36,7 @@ impl Brique {
 }
 
 #[derive(Clone)]
-enum TypeOperation {
+pub enum TypeOperation {
     Produit,
     Somme,
 }
@@ -49,13 +49,13 @@ impl Default for TypeOperation {
 
 #[derive(Clone)]
 pub struct AlgoEuclide {
-    a: i32,
-    b: i32,
-    lignes: Vec<Brique>, 
+    pub a: i32,
+    pub b: i32,
+    pub lignes: Vec<Brique>, 
 }
 
 impl AlgoEuclide {
-    fn new(a: i32, b:i32) -> Self {
+    pub fn new(a: i32, b:i32) -> Self {
         AlgoEuclide {
             a: a,
             b: b,
@@ -125,38 +125,3 @@ fn division_euclidienne(mut a: i32, mut b: i32) -> (i32, i32) {
 }
 
 
-#[cfg(test)]
-mod tests {
-    use crate::{AlgoEuclide, TypeOperation};
-    #[test]
-    fn test_algo_euclide() { //teste la creation algorithem d'euclide
-        let algorithme = AlgoEuclide::new(0, 0);
-        let result = if algorithme.a == 0 && algorithme.b == 0 {
-            true
-        } else {
-            false
-        };
-        assert_eq!(result, true);
-    }
-
-    #[test]
-    fn test_algo_euclide_2() {
-        let mut algorithme: AlgoEuclide = AlgoEuclide::new(2, 1);
-        algorithme = algorithme.compute();
-        assert_eq!(algorithme.print(), "2 = 1 x 2 + 0".to_string())
-    }
-
-    use crate::Brique;
-    #[test]
-    fn brique_print() {
-        let brique = Brique {
-            briques: vec![ Brique {
-                briques: Vec::new(),
-                nombres: vec![2.0, 5.0],
-                type_operation: TypeOperation::Produit,
-            }],
-            nombres: vec![5.0, 2.0],
-            type_operation: TypeOperation::Produit,
-        };
-        assert_eq!(brique.print(), "(2 x 5) x 5 x 2");
-    }}
