@@ -71,7 +71,7 @@ impl AlgoEuclide {
             }
         }
         let (mut quotient, mut reste) = division_euclidienne(self.a, self.b);
-        let mut ligne = Brique::new();
+        let mut ligne: Brique;
         let mut output = self.clone(); 
         while {
             ligne = Brique {
