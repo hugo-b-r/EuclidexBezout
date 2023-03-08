@@ -33,4 +33,11 @@ mod tests {
         };
         assert_eq!(brique.print(), "(2 x 5) x 5 x 2");
     }
+
+    use euclide_x_bezout::pgcd;
+    #[test]
+    fn t_pgcd() {
+        let pgcd = pgcd(585, 360);
+        assert_eq!(pgcd, 45);
+    }
 }
