@@ -14,21 +14,22 @@ impl Brique {
         }
     }
 
-    fn print(self: Self) {
-        let output: String;
+    fn print(self: Self) -> String{
+        let mut output: String = "".to_string();
         let symbol = match self.type_operation {
             TypeOperation::Somme => " + ",
             TypeOperation::Produit => " x ", 
         };
         for brique in self.briques {
-            brique.print();
-            print!("{}", symbol);
+            output.push_str(brique.print().as_str());
+            output.push_str(format!("{}", symbol).as_str());
         }
         for nombre in self.nombres {
-            print!("{}", nombre);
-            print!("{}", symbol);
+            output.push_str(format!("{}", nombre).as_str());
+            output.push_str(format!("{}", symbol).as_str());
         }
-        print!(r"\b\b\b");
+        output = output[0..(output.len()-3)].to_string();
+        output
     }
 }
 
