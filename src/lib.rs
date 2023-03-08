@@ -21,7 +21,9 @@ impl Brique {
             TypeOperation::Produit => " x ", 
         };
         for brique in self.briques {
+            output.push_str("(");
             output.push_str(brique.print().as_str());
+            output.push_str(")");
             output.push_str(format!("{}", symbol).as_str());
         }
         for nombre in self.nombres {
