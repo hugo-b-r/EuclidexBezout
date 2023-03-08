@@ -13,6 +13,23 @@ impl Brique {
             type_operation: TypeOperation::default(),
         }
     }
+
+    fn print(self: Self) {
+        let output: String;
+        let symbol = match self.type_operation {
+            TypeOperation::Somme => " + ",
+            TypeOperation::Produit => " x ", 
+        };
+        for brique in self.briques {
+            brique.print();
+            print!("{}", symbol);
+        }
+        for nombre in self.nombres {
+            print!("{}", nombre);
+            print!("{}", symbol);
+        }
+        print!(r"\b\b\b");
+    }
 }
 
 #[derive(Clone)]
