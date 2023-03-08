@@ -64,11 +64,11 @@ impl AlgoEuclide {
     }
 
     pub fn compute(mut self: Self) -> Self {
-        if false {
-            if self.b > self.a {
-                (self.a, self.b) = (self.b, self.a);
-                println!("{}|{}", self.a, self.b);
-            }
+        
+        if self.b > self.a {
+            let c = self.a;
+            self.a = self.b;
+            self.b = c;
         }
         let (mut quotient, mut reste) = division_euclidienne(self.a, self.b);
         let mut ligne: Brique;
