@@ -40,4 +40,23 @@ mod tests {
         let pgcd = pgcd(585, 360);
         assert_eq!(pgcd, 45);
     }
+
+    #[test]
+    fn t_developpe_1() {
+        let mut brique = Brique::new();
+        brique.type_operation = TypeOperation::Produit;
+        brique.briques.push( Brique {
+            briques: Vec::new(),
+            nombres: vec![25.0, 30.0],
+            type_operation: TypeOperation::Somme,
+        });
+        brique.nombres.push(25.0);
+        brique = brique.developpe().unwrap();
+
+        let brique_texte = brique.print();
+
+        assert_eq!(brique_texte, "(25 x 25) + (30 x 25)".to_string());
+
+
+    }
 }

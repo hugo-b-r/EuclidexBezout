@@ -36,7 +36,7 @@ impl Brique {
 
     //utilisation de cette fonction avec grande attention, ne prend que deux
     // briques, une brique et un nombre, ou deux nombres
-    fn developpe(self: Self) -> Result<Self, String> {
+    pub fn developpe(self: Self) -> Result<Self, String> {
         if self.type_operation == TypeOperation::Produit {
             
             if self.briques.len() >= 2 {
