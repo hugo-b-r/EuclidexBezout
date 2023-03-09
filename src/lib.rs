@@ -34,11 +34,17 @@ impl Brique {
         output
     }
 
-    fn developpe(self: Self) -> Self {
-        if self.type_operation == TypeOperation::Produit { //on fait le produit des deux premieres briques
+    //utilisation de cette fonction avec grande attention, ne prend que deux
+    // briques, une brique et un nombre, ou deux nombres
+    fn developpe(self: Self) -> Result<Self, String> {
+        if self.type_operation == TypeOperation::Produit {
+            
             if self.briques.len() >= 2 {
+                //on fait le produit des deux premieres briques
+
                 let mut output = Brique::new();
                 output.type_operation = TypeOperation::Somme;
+
                 for nombre in self.briques[0].nombres.iter() {
                     for nombre_bis in self.briques[1].nombres.iter() {
                         output.briques.push( Brique { 
@@ -48,16 +54,28 @@ impl Brique {
                         });
                     }
                 }
-                output
-            } else if self.briques.len() == 1 {         //on fait le produit du premier nombre et de la premiere brique
-                let mut output = Brique::new();
+
+                Ok( output )
                 
-                output
+            } else if self.briques.len() == 1 {
+                //on fait le produit du premier nombre et de la premiere brique
+                
+                let mut output = Brique::new();
+                output.type_operation = TypeOperation::Somme;
+                for nombre in self.briques[0].nombres.iter() {
+                    output.briques.push( Brique {
+                        briques: Vec::new(),
+                        nombres: vec![*nombre, self.nombres[0]],
+                        type_operation: TypeOperation::Produit,
+                    })
+                }
+                
+                Ok( output )
             } else {
-                self
+                Ok( self )
             }
         } else {
-            eprintln!("not a product !!");
+            err("not a product !!")
             self
         }
 
