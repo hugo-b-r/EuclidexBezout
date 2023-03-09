@@ -76,17 +76,41 @@ impl AlgoEuclide {
         } else {
             let output = Vec::new();
             let mut i = 0;
-            while self.lignes[0].nombres[0] != 1. {
+            while self.lignes[i].nombres[0] != 1. {
                 i += 1; //on positionne i à la ligne interressant, celle à laquelle le reste = 1
             }
 
-            //3 etapes;
-            //etape 1: on remplace par dividende - diviseur x quotient a i -1
-            //etape 2: on developpe
-            //etape 3: on rassemble
+            let ligne = 
 
+            while i > 0 {
+                //3 etapes;
+                
+                //etape 1: on remplace par dividende - diviseur x quotient a i -1
+
+
+                //etape 2: on developpe
+                //etape 3: on rassemble
+
+            }
+            
             Ok( output )
         }
 
+    }
+}
+
+pub fn remplacer_reste_dividende_moins_diviseur_fois_quotient(
+    algorithme: AlgoEuclide,
+    rang: usize
+) -> Brique {
+    
+    let mut produit: Brique = algorithme.lignes[rang];
+    produit.nombres[0] = -produit.nombres[0];
+    Brique {
+        briques: vec![
+            produit
+        ],
+        nombres: vec![algorithme.lignes[rang-1].briques[0].nombres[0]],
+        type_operation: TypeOperation::Somme,
     }
 }
