@@ -35,12 +35,21 @@ impl Brique {
     }
 
     fn developpe(self: Self) -> Self {
-        if self.type_operation == TypeOperation::Produit {
+        if self.type_operation == TypeOperation::Produit { //on fait le produit des deux premieres briques
             if self.briques.len() >= 2 {
                 let mut output = Brique::new();
-                
+                output.type_operation = TypeOperation::Somme;
+                for nombre in self.briques[0].nombres.iter() {
+                    for nombre_bis in self.briques[1].nombres.iter() {
+                        output.briques.push( Brique { 
+                            briques: Vec::new(),
+                            nombres: vec![*nombre, *nombre_bis],
+                            type_operation: TypeOperation::Produit,
+                        });
+                    }
+                }
                 output
-            } else if self.briques.len() == 1 {
+            } else if self.briques.len() == 1 {         //on fait le produit du premier nombre et de la premiere brique
                 let mut output = Brique::new();
                 
                 output
