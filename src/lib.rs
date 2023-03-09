@@ -37,9 +37,13 @@ impl Brique {
     fn developpe(self: Self) -> Self {
         if self.type_operation == TypeOperation::Produit {
             if self.briques.len() >= 2 {
+                let mut output = Brique::new();
                 
+                output
             } else if self.briques.len() == 1 {
-
+                let mut output = Brique::new();
+                
+                output
             } else {
                 self
             }
@@ -51,7 +55,7 @@ impl Brique {
     }
 }
 
-#[derive(Clone)]
+#[derive(Clone, PartialEq)]
 pub enum TypeOperation {
     Produit,
     Somme,
