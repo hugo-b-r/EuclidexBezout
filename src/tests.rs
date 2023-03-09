@@ -56,7 +56,26 @@ mod tests {
         let brique_texte = brique.print();
 
         assert_eq!(brique_texte, "(25 x 25) + (30 x 25)".to_string());
+    }
 
+    #[test]
+    fn t_developpe_2() {
+        let mut brique = Brique::new();
+        brique.type_operation = TypeOperation::Produit;
+        brique.briques.push( Brique {
+            briques: Vec::new(),
+            nombres: vec![25.0, 30.0],
+            type_operation: TypeOperation::Somme,
+        });
+        brique.briques.push( Brique {
+            briques: Vec::new(),
+            nombres: vec![25.0, 30.0],
+            type_operation: TypeOperation::Somme,
+        });
+        brique = brique.developpe().unwrap();
 
+        let brique_texte = brique.print();
+
+        assert_eq!(brique_texte, "(25 x 25) + (25 x 30) + (30 x 25) + (30 x 30)".to_string());
     }
 }
