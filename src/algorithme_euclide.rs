@@ -75,6 +75,15 @@ impl AlgoEuclide {
             Err("Numbers not prime between them. ".to_string())
         } else {
             let output = Vec::new();
+            let mut i = 0;
+            while self.lignes[0].nombres[0] != 1. {
+                i += 1; //on positionne i à la ligne interressant, celle à laquelle le reste = 1
+            }
+
+            //3 etapes;
+            //etape 1: on remplace par dividende - diviseur x quotient a i -1
+            //etape 2: on developpe
+            //etape 3: on rassemble
 
             Ok( output )
         }
