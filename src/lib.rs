@@ -75,8 +75,7 @@ impl Brique {
                 Ok( self )
             }
         } else {
-            err("not a product !!")
-            self
+            Err("not a product !!".to_string())
         }
 
     }
