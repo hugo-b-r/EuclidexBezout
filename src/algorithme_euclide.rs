@@ -1,6 +1,6 @@
 use crate::type_operation::TypeOperation;
 use crate::brique::Brique;
-use crate::generic::division_euclidienne;
+use crate::generic::{division_euclidienne, pgcd};
 
 
 
