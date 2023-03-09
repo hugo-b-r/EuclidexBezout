@@ -69,4 +69,8 @@ impl AlgoEuclide {
         }
         output
     }
+
+    pub fn etendu() {
+        
+    }
 }
