@@ -70,7 +70,14 @@ impl AlgoEuclide {
         output
     }
 
-    pub fn etendu() {
-        
+    pub fn etendu(self: Self) -> Result<Vec<Brique>, String> {
+        if pgcd(self.a, self.b) != 1 {
+            Err("Numbers not prime between them. ".to_string())
+        } else {
+            let output = Vec::new();
+
+            Ok( output )
+        }
+
     }
 }
