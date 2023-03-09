@@ -36,7 +36,13 @@ impl Brique {
 
     fn developpe(self: Self) -> Self {
         if self.type_operation == TypeOperation::Produit {
-            //do something
+            if self.briques.len() >= 2 {
+                
+            } else if self.briques.len() == 1 {
+
+            } else {
+                self
+            }
         } else {
             eprintln!("not a product !!");
             self
