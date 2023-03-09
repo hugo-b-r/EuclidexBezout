@@ -1,3 +1,6 @@
+
+
+
 #[cfg(test)]
 mod tests {
     use euclide_x_bezout::{AlgoEuclide, TypeOperation};
