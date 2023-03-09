@@ -33,6 +33,16 @@ impl Brique {
         output = output[0..(output.len()-3)].to_string();
         output
     }
+
+    fn developpe(self: Self) -> Self {
+        if self.type_operation == TypeOperation::Produit {
+            //do something
+        } else {
+            eprintln!("not a product !!");
+            self
+        }
+
+    }
 }
 
 #[derive(Clone)]
