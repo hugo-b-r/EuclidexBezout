@@ -39,7 +39,7 @@ impl Brique {
     pub fn developpe(self: Self) -> Result<Self, String> {
         if self.type_operation == TypeOperation::Produit {
             
-            if self.briques.len() >= 2 {
+            if self.briques.len() >= 2 && self.nombres.len() == 0 {
                 //on fait le produit des deux premieres briques
 
                 let mut output = Brique::new();
@@ -57,7 +57,7 @@ impl Brique {
 
                 Ok( output )
                 
-            } else if self.briques.len() == 1 {
+            } else if self.briques.len() == 1 && self.nombres.len() == 1{
                 //on fait le produit du premier nombre et de la premiere brique
                 
                 let mut output = Brique::new();
@@ -71,8 +71,10 @@ impl Brique {
                 }
                 
                 Ok( output )
+            } else if (self.nombres.len() + self.briques.len()) > 2 {
+                Err( "too much briques or numbers".to_string() )
             } else {
-                Ok( self )
+                Ok ( self )
             }
         } else {
             Err("not a product !!".to_string())
