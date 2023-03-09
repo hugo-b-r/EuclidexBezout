@@ -74,18 +74,21 @@ impl AlgoEuclide {
         if pgcd(self.a, self.b) != 1 {
             Err("Numbers not prime between them. ".to_string())
         } else {
-            let output = Vec::new();
+            let mut output = Vec::new();
             let mut i = 0;
             while self.lignes[i].nombres[0] != 1. {
                 i += 1; //on positionne i à la ligne interressant, celle à laquelle le reste = 1
             }
 
-            let ligne = 
+            let mut ligne = remplacer_reste_dividende_moins_diviseur_fois_quotient(&self, i+1);
 
             while i > 0 {
                 //3 etapes;
                 
-                //etape 1: on remplace par dividende - diviseur x quotient a i -1
+                //etape 1: on remplace par dividende - diviseur x quotient a i -1 
+                
+                ligne = remplacer_reste_dividende_moins_diviseur_fois_quotient(&self, i);
+                output.push(ligne);
 
 
                 //etape 2: on developpe
@@ -100,7 +103,7 @@ impl AlgoEuclide {
 }
 
 pub fn remplacer_reste_dividende_moins_diviseur_fois_quotient(
-    algorithme: AlgoEuclide,
+    algorithme: &AlgoEuclide,
     rang: usize
 ) -> Brique {
     
