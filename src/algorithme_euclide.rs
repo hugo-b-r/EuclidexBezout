@@ -80,15 +80,22 @@ impl AlgoEuclide {
                 i += 1; //on positionne i à la ligne interressant, celle à laquelle le reste = 1
             }
 
-            let mut ligne = remplacer_reste_dividende_moins_diviseur_fois_quotient(&self, i+1);
+            let mut ligne = Brique {
+                briques: vec![
+                    self.lignes[i].briques[0].clone()
+                ],
+                nombres: vec![self.lignes[i-1].briques[0].nombres[0]],
+                type_operation: TypeOperation::Somme,
+            };
+            ligne.briques[0].nombres[0] = -ligne.briques[0].nombres[0];
 
             while i > 0 {
                 //3 etapes;
                 
                 //etape 1: on remplace par dividende - diviseur x quotient a i -1 
                 
-                ligne = remplacer_reste_dividende_moins_diviseur_fois_quotient(&self, i);
-                output.push(ligne);
+                ligne = remplacer_reste_dividende_moins_diviseur_fois_quotient(&mut ligne, &self, i);
+                output.push(ligne.clone());
 
 
                 //etape 2: on developpe
@@ -103,17 +110,26 @@ impl AlgoEuclide {
 }
 
 pub fn remplacer_reste_dividende_moins_diviseur_fois_quotient(
+    brique: &mut Brique,
     algorithme: &AlgoEuclide,
     rang: usize
 ) -> Brique {
     
-    let mut produit: Brique = algorithme.lignes[rang];
+    let mut produit: Brique = algorithme.lignes[rang].clone();
+    let mut resultat = brique.clone();
+    resultat.nombres.remove(0);
+
     produit.nombres[0] = -produit.nombres[0];
-    Brique {
+
+    let replacing = Brique {
         briques: vec![
             produit
         ],
         nombres: vec![algorithme.lignes[rang-1].briques[0].nombres[0]],
         type_operation: TypeOperation::Somme,
-    }
+    };
+
+    resultat.briques.push(replacing);
+    
+    brique.clone()
 }
