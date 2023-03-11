@@ -14,7 +14,7 @@ impl DivisionEuclidienne {
         self.reste = self.dividende - (self.diviseur * self.quotient);
     }
 
-    fn print(self: Self) -> String {
+    pub fn print(self: Self) -> String {
         let text: String = format!("{} = {} x {} + {}", self.dividende, self.diviseur, self.quotient, self.reste);
         text
     }

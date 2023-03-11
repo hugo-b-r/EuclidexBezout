@@ -39,19 +39,11 @@ impl AlgoEuclide {
     }
 
     pub fn print(self: Self) -> String{
-        let mut a = self.a;
-        let mut b = self.lignes[0].briques[0].nombres[0] as i32;
-        let mut quotient = self.lignes[0].briques[0].nombres[1] as i32;
-        let mut reste = self.lignes[0].nombres[0] as i32;
-        let mut output = String::default();
+        let mut text: String;
         for ligne in self.lignes {
-            output.push_str(format!("{} = {} x {} + {}", a, b, quotient, reste).as_str());
-            a = b;
-            b = reste as i32;
-            quotient = ligne.briques[0].nombres[1] as i32;
-            reste = ligne.nombres[0] as i32;
+            text.push_str(ligne.print().as_str());
         }
-        output
+        text
     }
 
     pub fn etendu(self: Self) -> Result<Vec<Brique>, String> {
