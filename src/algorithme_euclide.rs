@@ -6,8 +6,8 @@ use crate::generic::{DivisionEuclidienne, division_euclidienne, pgcd};
 
 #[derive(Clone)]
 pub struct AlgoEuclide {
-    a: i32,
-    b: i32,
+    pub a: i32,
+    pub b: i32,
     pub lignes: Vec<DivisionEuclidienne>, 
 }
 
@@ -52,26 +52,28 @@ impl AlgoEuclide {
         } else {
             let mut output = Vec::new();
             let mut i = 0;
-            while self.lignes[i].nombres[0] != 1. {
+            while self.lignes[i].reste != 1 {
                 i += 1; //on positionne i à la ligne interressant, celle à laquelle le reste = 1
             }
-
-            let mut ligne = Brique {
+        
+            
+    /*        let mut ligne = Brique {
                 briques: vec![
                     self.lignes[i].briques[0].clone()
                 ],
                 nombres: vec![self.lignes[i-1].briques[0].nombres[0]],
                 type_operation: TypeOperation::Somme,
             };
-            ligne.briques[0].nombres[0] = -ligne.briques[0].nombres[0];
-
+                ligne.briques[0].nombres[0] = -ligne.briques[0].nombres[0];
+    */
+            
             while i > 0 {
                 //3 etapes;
                 
                 //etape 1: on remplace par dividende - diviseur x quotient a i -1 
                 
-                ligne = remplacer_reste_dividende_moins_diviseur_fois_quotient(&mut ligne, &self, i);
-                output.push(ligne.clone());
+                //ligne = remplacer_reste_dividende_moins_diviseur_fois_quotient(&mut ligne, &self, i);
+                //output.push(ligne.clone());
 
 
                 //etape 2: on developpe
