@@ -13,6 +13,11 @@ impl DivisionEuclidienne {
         self.quotient = self.dividende/self.diviseur;
         self.reste = self.dividende - (self.diviseur * self.quotient);
     }
+
+    fn print(self: Self) -> String {
+        let text: String = format!("{} = {} x {} + {}", self.dividende, self.diviseur, self.quotient, self.reste);
+        text
+    }
 }
 
 pub fn division_euclidienne(mut dividende: i32, mut diviseur: i32) -> DivisionEuclidienne {
