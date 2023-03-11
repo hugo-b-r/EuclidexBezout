@@ -1,21 +1,17 @@
 use crate::type_operation::TypeOperation;
 use crate::brique::Brique;
-use crate::generic::{division_euclidienne, pgcd};
+use crate::generic::{DivisionEuclidienne, division_euclidienne, pgcd};
 
 
 
 #[derive(Clone)]
 pub struct AlgoEuclide {
-    pub a: i32,
-    pub b: i32,
-    pub lignes: Vec<Brique>, 
+    pub lignes: Vec<DivisionEuclidienne>, 
 }
 
 impl AlgoEuclide {
     pub fn new(a: i32, b:i32) -> Self {
         AlgoEuclide {
-            a: a,
-            b: b,
             lignes: Vec::new(),
         }
     }

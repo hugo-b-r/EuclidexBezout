@@ -1,10 +1,18 @@
 use crate::algorithme_euclide::AlgoEuclide;
 
-struct DivisionEuclidienne {
+#[derive(Clone)]
+pub struct DivisionEuclidienne {
     dividende: i32,
     diviseur: i32,
     quotient: i32,
     reste: i32,
+}
+
+impl DivisionEuclidienne {
+    fn compute(self: Self) {
+        self.quotient = self.dividende/self.diviseur;
+        self.reste = self.dividende - (self.diviseur * self.quotient);
+    }
 }
 
 pub fn division_euclidienne(mut dividende: i32, mut diviseur: i32) -> DivisionEuclidienne {
