@@ -27,6 +27,8 @@ impl AlgoEuclide {
             self.a = self.b;
             self.b = c;
         }
+        let mut diviseur_actuel: i32;
+        let mut dividende_actuel: i32;
         let (mut quotient, mut reste) = division_euclidienne(self.a, self.b);
         let mut ligne: Brique;
         let mut output = self.clone(); 
