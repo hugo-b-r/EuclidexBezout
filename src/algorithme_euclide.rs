@@ -20,40 +20,22 @@ impl AlgoEuclide {
         }
     }
 
-    pub fn compute(mut self: Self) -> Self {
+    pub fn compute(self: &mut Self) {
         
         if self.b > self.a {
             let c = self.a;
             self.a = self.b;
             self.b = c;
         }
-        let mut diviseur_actuel: i32;
-        let mut dividende_actuel: i32;
-        let (mut quotient, mut reste) = division_euclidienne(self.a, self.b);
-        let mut ligne: Brique;
-        let mut output = self.clone(); 
-        while {
-            ligne = Brique {
-                briques: vec![Brique {
-                    briques: Vec::new(),
-                    nombres: vec![output.b as f64, quotient as f64],
-                    type_operation: TypeOperation::Produit,
-                }],
-                nombres: vec![reste as f64],
-                type_operation: TypeOperation::Somme,
-            };
-            output.lignes.push(ligne);
-
-            output.a = output.b;
-            output.b = reste;
-            if reste != 0 {
-                (quotient, reste) = division_euclidienne(output.a, output.b);
-            }
-            reste != 0
-        } {}
-        output.a = self.a;
-        output
-
+        let mut diviseur_actuel: i32 = self.a.clone();
+        let mut dividende_actuel: i32 = self.b.clone();
+        self.lignes = Vec::new();
+        self.lignes.push(division_euclidienne(dividende_actuel, diviseur_actuel));
+        while self.lignes[self.lignes.len()].reste != 0 {
+            dividende_actuel = diviseur_actuel;
+            diviseur_actuel = self.lignes[self.lignes.len()].quotient;
+            self.lignes.push(division_euclidienne(dividende_actuel, diviseur_actuel));
+        }
     }
 
     pub fn print(self: Self) -> String{

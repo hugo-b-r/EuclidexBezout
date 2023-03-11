@@ -2,10 +2,10 @@ use crate::algorithme_euclide::AlgoEuclide;
 
 #[derive(Clone)]
 pub struct DivisionEuclidienne {
-    dividende: i32,
-    diviseur: i32,
-    quotient: i32,
-    reste: i32,
+    pub dividende: i32,
+    pub diviseur: i32,
+    pub quotient: i32,
+    pub reste: i32,
 }
 
 impl DivisionEuclidienne {

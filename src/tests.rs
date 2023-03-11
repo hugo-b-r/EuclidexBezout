@@ -18,7 +18,7 @@ mod tests {
     #[test]
     fn t_algo_euclide_2() {
         let mut algorithme: AlgoEuclide = AlgoEuclide::new(2, 1);
-        algorithme = algorithme.compute();
+        algorithme.compute();
         assert_eq!(algorithme.print(), "2 = 1 x 2 + 0".to_string())
     }
 
