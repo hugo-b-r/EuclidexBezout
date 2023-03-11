@@ -1,14 +1,24 @@
 use crate::algorithme_euclide::AlgoEuclide;
 
+struct DivisionEuclidienne {
+    dividende: i32,
+    diviseur: i32,
+    quotient: i32,
+    reste: i32,
+}
 
-
-pub fn division_euclidienne(mut a: i32, mut b: i32) -> (i32, i32) {
-    if b > a {
-        (a, b) = (b, a);
+pub fn division_euclidienne(mut dividende: i32, mut diviseur: i32) -> DivisionEuclidienne {
+    if diviseur > dividende {
+        (dividende, diviseur) = (diviseur, dividende);
     }
-    let quotient = a/b;
-    let reste = a-(b*quotient);
-    (quotient, reste)
+    let quotient = dividende/diviseur;
+    let reste = dividende-(diviseur*quotient);
+    DivisionEuclidienne {
+        dividende,
+        diviseur,
+        quotient,
+        reste,
+    }
 }
 
 pub fn pgcd(a: i32, b: i32) -> i32 {
