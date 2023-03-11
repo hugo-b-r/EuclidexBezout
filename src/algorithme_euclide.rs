@@ -6,12 +6,16 @@ use crate::generic::{DivisionEuclidienne, division_euclidienne, pgcd};
 
 #[derive(Clone)]
 pub struct AlgoEuclide {
+    a: i32,
+    b: i32,
     pub lignes: Vec<DivisionEuclidienne>, 
 }
 
 impl AlgoEuclide {
     pub fn new(a: i32, b:i32) -> Self {
         AlgoEuclide {
+            a: a,
+            b: b,
             lignes: Vec::new(),
         }
     }
