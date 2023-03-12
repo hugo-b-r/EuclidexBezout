@@ -11,6 +11,11 @@ pub struct AlgoEuclide {
     pub lignes: Vec<DivisionEuclidienne>, 
 }
 
+struct LigneAlgoEtendu {
+    produit_1: Vec<i32>,
+    produit_2: Vec<i32>,
+}
+
 impl AlgoEuclide {
     pub fn new(a: i32, b:i32) -> Self {
         AlgoEuclide {
@@ -56,7 +61,6 @@ impl AlgoEuclide {
                 i += 1; //on positionne i à la ligne interressant, celle à laquelle le reste = 1
             }
         
-            
     /*        let mut ligne = Brique {
                 briques: vec![
                     self.lignes[i].briques[0].clone()
