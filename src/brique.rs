@@ -85,6 +85,17 @@ impl Brique {
         }
     }
 
+    fn longueur(self: &Self) -> usize {
+        match self {
+            Entier(_) => 1,
+            Produit(_, _) => 2,
+            Somme(_, _) => 2,
+            Difference(_, _) => 2,
+            Division(_, _) => 2,
+            DivisionEuclidienne(_, _, _) => 3,
+        }
+    }
+
     fn developpe(self: &Self) -> Result<Self, String> {
         if let Brique::Produit(brique_1, brique_2) = self {
             if let Brique::Somme(entier_1, entier_2) = &**brique_1 {
