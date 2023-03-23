@@ -81,7 +81,7 @@ impl Brique {
                     Err(String::from("rang hors du nombre de facteurs"))
                 }
             },
-            DivisionEuclidienne(nada_1, nada_2, nada_3) => Err(String::from("Valeur impossible pour une division euclidienne")),
+            DivisionEuclidienne(_, _, _) => Err(String::from("Valeur impossible pour une division euclidienne")),
         }
     }
 
