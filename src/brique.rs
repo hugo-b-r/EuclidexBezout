@@ -15,13 +15,13 @@ impl Brique {
             Entier(valeur) => Ok( *valeur ),
             Produit(facteur_1, facteur_2) => {
                 if rang == 0 {
-                    if let Brique::Entier(entier) = *facteur_1 {
+                    if let Brique::Entier(entier) = **facteur_1 {
                         Ok( facteur_1.valeur(0).unwrap() )
                     } else {
                         Err(String::from("facteur à ce rang n'est pas un nombre entier"))
                     }
                 } else if rang == 1 {
-                    if let Brique::Entier(entier) = facteur_2 {
+                    if let Brique::Entier(entier) = **facteur_2 {
                         Ok( facteur_2.valeur(0).unwrap() )
                     } else {
                         Err(String::from("facteur à ce rang n'est pas un nombre entier"))
@@ -32,13 +32,13 @@ impl Brique {
             },
             Somme(terme_1, terme_2) => {
                 if rang == 0 {
-                    if let Brique::Entier(entier) = terme_1 {
+                    if let Brique::Entier(entier) = **terme_1 {
                         Ok( terme_1.valeur(0).unwrap() )
                     } else {
                         Err(String::from("terme à ce rang n'est pas un nombre entier"))
                     }
                 } else if rang == 1 {
-                    if let Brique::Entier(entier) = terme_2 {
+                    if let Brique::Entier(entier) = **terme_2 {
                         Ok( terme_2.valeur(0).unwrap() )
                     } else {
                         Err(String::from("terme à ce rang n'est pas un nombre entier"))
@@ -49,13 +49,13 @@ impl Brique {
             },
             Difference(terme_1, terme_2) => {
                 if rang == 0 {
-                    if let Brique::Entier(entier) = terme_1 {
+                    if let Brique::Entier(entier) = **terme_1 {
                         Ok( terme_1.valeur(0).unwrap() )
                     } else {
                         Err(String::from("terme à ce rang n'est pas un nombre entier"))
                     }
                 } else if rang == 1 {
-                    if let Brique::Entier(entier) = terme_2 {
+                    if let Brique::Entier(entier) = **terme_2 {
                         Ok( terme_2.valeur(0).unwrap() )
                     } else {
                         Err(String::from("terme à ce rang n'est pas un nombre entier"))
@@ -66,13 +66,13 @@ impl Brique {
             },
             Division(facteur_1, facteur_2) => {
                 if rang == 0 {
-                    if let Brique::Entier(entier) = facteur_1 {
+                    if let Brique::Entier(entier) = **facteur_1 {
                         Ok( facteur_1.valeur(0).unwrap() )
                     } else {
                         Err(String::from("facteur à ce rang n'est pas un nombre entier"))
                     }
                 } else if rang == 1 {
-                    if let Brique::Entier(entier) = facteur_2 {
+                    if let Brique::Entier(entier) = **facteur_2 {
                         Ok( facteur_2.valeur(0).unwrap() )
                     } else {
                         Err(String::from("facteur à ce rang n'est pas un nombre entier"))
