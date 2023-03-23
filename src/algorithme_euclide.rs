@@ -11,11 +11,6 @@ pub struct AlgoEuclide {
     pub lignes: Vec<DivisionEuclidienne>, 
 }
 
-struct LigneAlgoEtendu {
-    produit_1: Vec<i32>,
-    produit_2: Vec<i32>,
-}
-
 impl AlgoEuclide {
     pub fn new(a: i32, b:i32) -> Self {
         AlgoEuclide {
@@ -51,7 +46,7 @@ impl AlgoEuclide {
         text
     }
 
-    pub fn etendu(self: Self) -> Result<Vec<Brique>, String> {
+    pub fn etendu(self: Self) -> Result<Vec<LigneAlgoEtendu>, String> {
         if pgcd(self.a, self.b) != 1 {
             Err("Numbers not prime between them. ".to_string())
         } else {
@@ -61,6 +56,7 @@ impl AlgoEuclide {
                 i += 1; //on positionne i à la ligne interressant, celle à laquelle le reste = 1
             }
         
+<<<<<<< HEAD
     /*        let mut ligne = Brique {
                 briques: vec![
                     self.lignes[i].briques[0].clone()
@@ -70,6 +66,8 @@ impl AlgoEuclide {
             };
                 ligne.briques[0].nombres[0] = -ligne.briques[0].nombres[0];
     */
+=======
+>>>>>>> 464a561 (types pour un nombre et son coefficient)
             
             while i > 0 {
                 //3 etapes;
