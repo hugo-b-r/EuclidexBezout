@@ -9,9 +9,9 @@ enum MembreBrique {
 impl MembreBrique {
     fn print(self: Self) -> String {
         if let MembreBrique::Int(i) = self {
-            i
+            format!("{}", i)
         } else if let MembreBrique::Brique(boite) = self {
-            format!("{}", boite)
+            boite.print()
         } else {
             "".to_string()
         }
@@ -23,6 +23,7 @@ pub struct Brique {
     pub expression: Vec<MembreBrique>,
     pub type_operation: TypeOperation,
 }
+
 
 impl Brique {
     pub fn new() -> Self {
@@ -38,16 +39,13 @@ impl Brique {
             TypeOperation::Somme => " + ",
             TypeOperation::Produit => " x ", 
         };
-        for expression in self.expression {
+        for membre_brique in self.expression {
             output.push_str("(");
-            output.push_str(brique.print().as_str());
+            output.push_str(membre_brique.print().as_str());
             output.push_str(")");
-            output.push_str(format!("{}", symbol).as_str());
+            output.push_str(format!("{}", symbole).as_str());
         }
-        for nombre in self.nombres {
-            output.push_str(format!("{}", nombre).as_str());
-            output.push_str(format!("{}", symbol).as_str());
-        }
+
         output = output[0..(output.len()-3)].to_string();
         output
     }
