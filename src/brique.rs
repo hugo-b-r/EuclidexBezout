@@ -1,11 +1,14 @@
 use crate::type_operation::TypeOperation;
 
-
+#[derive(Clone)]
+enum MembreBrique {
+    Int(i32),
+    Brique(Box<Brique>),
+}
 
 #[derive(Clone)]
 pub struct Brique {
-    pub briques: Vec<Brique>,
-    pub nombres: Vec<f64>,
+    pub expression: Vec<MembreBrique>,
     pub type_operation: TypeOperation,
 }
 
