@@ -6,6 +6,18 @@ enum MembreBrique {
     Brique(Box<Brique>),
 }
 
+impl MembreBrique {
+    fn print(self: Self) -> String {
+        if let MembreBrique::Int(i) = self {
+            i
+        } else if let MembreBrique::Brique(boite) = self {
+            format!("{}", boite)
+        } else {
+            "".to_string()
+        }
+    } 
+}
+
 #[derive(Clone)]
 pub struct Brique {
     pub expression: Vec<MembreBrique>,
@@ -22,11 +34,11 @@ impl Brique {
 
     pub fn print(self: Self) -> String{
         let mut output: String = "".to_string();
-        let symbol = match self.type_operation {
+        let symbole = match self.type_operation {
             TypeOperation::Somme => " + ",
             TypeOperation::Produit => " x ", 
         };
-        for brique in self.briques {
+        for expression in self.expression {
             output.push_str("(");
             output.push_str(brique.print().as_str());
             output.push_str(")");
