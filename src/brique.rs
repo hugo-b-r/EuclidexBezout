@@ -1,6 +1,6 @@
-use std::ops::Deref;
+use crate::brique::Brique::*;
 
-enum Brique {
+pub enum Brique {
     Entier(i64),
     Produit(Box<Self>, Box<Self>),
     Somme(Box<Self>, Box<Self>),
@@ -12,76 +12,76 @@ enum Brique {
 impl Brique {
     fn valeur(self: &Self, rang: usize) -> Result<i64, String> {
         match self {
-            Entier(valeur) => valeur,
+            Entier(valeur) => Ok( *valeur ),
             Produit(facteur_1, facteur_2) => {
-                if rang > 1 {
-                    Err(String::from("rang hors du nombre de facteurs"))
-                } else if rang == 0 {
-                    if let Brique::Entier(entier) = facteur_1 {
-                        Ok( facteur_1 )
+                if rang == 0 {
+                    if let Brique::Entier(entier) = *facteur_1 {
+                        Ok( facteur_1.valeur(0).unwrap() )
                     } else {
                         Err(String::from("facteur à ce rang n'est pas un nombre entier"))
                     }
                 } else if rang == 1 {
                     if let Brique::Entier(entier) = facteur_2 {
-                        Ok( facteur_2 )
+                        Ok( facteur_2.valeur(0).unwrap() )
                     } else {
                         Err(String::from("facteur à ce rang n'est pas un nombre entier"))
                     }
+                } else {
+                    Err(String::from("rang hors du nombre de facteurs"))
                 }
             },
             Somme(terme_1, terme_2) => {
-                if rang > 1 {
-                    Err(String::from("rang hors du nombre de termes"))
-                } else if rang == 0 {
+                if rang == 0 {
                     if let Brique::Entier(entier) = terme_1 {
-                        Ok( terme_1 )
+                        Ok( terme_1.valeur(0).unwrap() )
                     } else {
                         Err(String::from("terme à ce rang n'est pas un nombre entier"))
                     }
                 } else if rang == 1 {
                     if let Brique::Entier(entier) = terme_2 {
-                        Ok( terme_2 )
+                        Ok( terme_2.valeur(0).unwrap() )
                     } else {
                         Err(String::from("terme à ce rang n'est pas un nombre entier"))
                     }
+                } else {
+                    Err(String::from("rang hors du nombre de termes"))
                 }
             },
             Difference(terme_1, terme_2) => {
-                if rang > 1 {
-                    Err(String::from("rang hors du nombre de termes"))
-                } else if rang == 0 {
+                if rang == 0 {
                     if let Brique::Entier(entier) = terme_1 {
-                        Ok( terme_1 )
+                        Ok( terme_1.valeur(0).unwrap() )
                     } else {
                         Err(String::from("terme à ce rang n'est pas un nombre entier"))
                     }
                 } else if rang == 1 {
                     if let Brique::Entier(entier) = terme_2 {
-                        Ok( terme_2 )
+                        Ok( terme_2.valeur(0).unwrap() )
                     } else {
                         Err(String::from("terme à ce rang n'est pas un nombre entier"))
                     }
+                } else {
+                    Err(String::from("rang hors du nombre de termes"))
                 }
             },
-            Division(terme_1, terme_2) => {
-                if rang > 1 {
-                    Err(String::from("rang hors du nombre de facteurs"))
-                } else if rang == 0 {
+            Division(facteur_1, facteur_2) => {
+                if rang == 0 {
                     if let Brique::Entier(entier) = facteur_1 {
-                        Ok( facteur_1 )
+                        Ok( facteur_1.valeur(0).unwrap() )
                     } else {
                         Err(String::from("facteur à ce rang n'est pas un nombre entier"))
                     }
                 } else if rang == 1 {
                     if let Brique::Entier(entier) = facteur_2 {
-                        Ok( facteur_2 )
+                        Ok( facteur_2.valeur(0).unwrap() )
                     } else {
                         Err(String::from("facteur à ce rang n'est pas un nombre entier"))
                     }
+                } else {
+                    Err(String::from("rang hors du nombre de facteurs"))
                 }
             },
-            DivisionEuclidienne(Box<Self>, Box<Self>, Box<Self>) => Err(String::from("Valeur impossible pour une division euclidienne")),
+            DivisionEuclidienne(nada_1, nada_2, nada_3) => Err(String::from("Valeur impossible pour une division euclidienne")),
         }
     }
 
