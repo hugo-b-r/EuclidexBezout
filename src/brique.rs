@@ -15,8 +15,7 @@ pub struct Brique {
 impl Brique {
     pub fn new() -> Self {
         Brique {
-            briques: Vec::new(),
-            nombres: Vec::new(),
+            expression: Vec::new(),
             type_operation: TypeOperation::default(),
         }
     }
