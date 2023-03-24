@@ -119,4 +119,64 @@ impl Brique {
         let sortie = Brique::Somme(vecteur_pre_sortie);
         Ok( sortie )
     }
+
+    pub fn somme(&self, rang: usize) -> Option<Self> {
+        let i = 0;
+        for brique in self.iter() {
+            if let Brique::Somme(vecteur) = *brique {
+                if i == rang as i32 {
+                    return Some(*brique);
+                } else {
+                    i += 1;
+                }
+            }
+        }
+        //if no return
+        None
+    }
+
+    pub fn produit(&self, rang: usize) -> Option<Self> {
+        let i = 0;
+        for brique in self.iter() {
+            if let Brique::Produit(vecteur) = *brique {
+                if i == rang as i32 {
+                    return Some(*brique);
+                } else {
+                    i += 1;
+                }
+            }
+        }
+        //if no return
+        None
+    }
+
+    pub fn difference(&self, rang: usize) -> Option<Self> {
+        let i = 0;
+        for brique in self.iter() {
+            if let Brique::Difference(vecteur) = *brique {
+                if i == rang as i32 {
+                    return Some(*brique);
+                } else {
+                    i += 1;
+                }
+            }
+        }
+        //if no return
+        None
+    }
+
+    pub fn division(&self, rang: usize) -> Option<Self> {
+        let i = 0;
+        for brique in self.iter() {
+            if let Brique::Division(vecteur) = *brique {
+                if i == rang as i32 {
+                    return Some(*brique);
+                } else {
+                    i += 1;
+                }
+            }
+        }
+        //if no return
+        None
+    }
 }
