@@ -9,6 +9,7 @@
 
 use super::Brique;
 
+#[derive(Clone)]
 struct AlgorithmeEuclide {
     lignes: Vec<Brique>,
     dividende: i64,
@@ -101,7 +102,7 @@ impl AlgorithmeEuclide {
                     ])
                 )
             ]);
-            let sortie = AlgoEuclideEtendu::new(*self);
+            let sortie = AlgoEuclideEtendu::new((*self).clone());
 
             //3 etapes: 
             //1: on remplace
