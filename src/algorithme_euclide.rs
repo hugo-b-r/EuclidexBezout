@@ -20,6 +20,15 @@ struct AlgoEuclideEtendu {
     algorithme_original: AlgorithmeEuclide,
 }
 
+impl AlgoEuclideEtendu {
+    fn new(algorithme_euclide: AlgorithmeEuclide) -> Self {
+        AlgoEuclideEtendu {
+            lignes: Vec::new(),
+            algorithme_original: algorithme_euclide,
+        }
+    }
+}
+
 fn division_euclidienne(a: i64, b: i64) -> Brique {
     let mut c;
     let mut d;
@@ -91,13 +100,14 @@ impl AlgorithmeEuclide {
                         Box::new(produit)
                     ])
                 )
-            ])
+            ]);
+            let sortie = AlgoEuclideEtendu::new(*self);
 
             //3 etapes: 
             //1: on remplace
             //2: on developpe
             //3 on rassemble
-            Ok( ligne)
+            Ok( sortie )
 
         } else {
             Err(String::from("nombres non premiers entre eux"))
