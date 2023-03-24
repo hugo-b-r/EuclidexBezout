@@ -135,10 +135,10 @@ impl Brique {
     fn longueur(self: &Self) -> usize {
         match self {
             Entier(_) => 1,
-            Produit(_, _) => 2,
-            Somme(_, _) => 2,
-            Difference(_, _) => 2,
-            Division(_, _) => 2,
+            Produit(_) => 2,
+            Somme(_) => 2,
+            Difference(_) => 2,
+            Division(_) => 2,
             DivisionEuclidienne(_, _, _) => 3,
         }
     }
