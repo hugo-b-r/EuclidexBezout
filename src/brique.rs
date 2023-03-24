@@ -68,9 +68,25 @@ impl Brique {
         }
     }
 
+    //use with care - utiliser avec attention,
+    //pas de sous somme de produit de rien du tout
     fn developpe(self: &Self) -> Result<Self, String> {
-        if let Brique::Produit(vecteur_sommes) = self {
+        let mut vecteur_pre_sortie = Vec::new();
 
+        if let Brique::Produit(vecteur_sommes) = self {
+            if let Brique::Somme(vecteur_membres_1) = *vecteur_sommes[0] {
+                if let Brique::Somme(vecteur_membres_2) = *vecteur_sommes[1] {
+                    for a in *vecteur_membres_1.iter() {
+                        for b in *vecteur_membres_2.iter() {
+                            vecteur_pre_sortie.push(Box::new(Brique::Produit(vec![a, b])));
+                        }
+                    }
+                } 
+            }
+        } else {
+            return Err(String::from("n'est pas un produit"))
         }
+        let sortie = Brique::Somme(vecteur_pre_sortie);
+        Ok( sortie )
     }
 }
