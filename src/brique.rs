@@ -1,5 +1,6 @@
 use crate::brique::Brique::*;
 
+#[derive(Clone)]
 pub enum Brique {
     Entier(i64),
     Produit(Vec<Box<Self>>),
@@ -21,8 +22,9 @@ impl <'a> Iterator for IterBrique<'a> {
             None
         } else {
             self.pos += 1;
+            let rang = self.pos -1;
 
-            Some(&self.inner.get(self.pos -1))
+            self.inner.get(rang as usize)
         }
     }
 }
@@ -39,19 +41,20 @@ impl Brique {
         } 
     }
 
-    fn get(&self, rang: usize) -> Self {
+    fn get(&self, rang: usize) -> Option<&Self> {
+        let rang_ici = &rang;
         match self {
-            Entier(entier) => Brique::Entier(*entier),
-            Produit(vector) => *vector[rang],
-            Somme(vector) => *vector[rang],
-            Difference(vector) => *vector[rang],
-            Division(vector) => *vector[rang],
+            Entier(_)                             =>     Some(&self),
+            Produit(vecteur)   =>     Some(&*vecteur[rang]),
+            Somme(vector)      =>     Some(&*vector[*rang_ici]),
+            Difference(vector) =>     Some(&*vector[*rang_ici]),
+            Division(vector)   =>     Some(&*vector[*rang_ici]),
             DivisionEuclidienne(un, deux, trois) => {
                 match rang {
-                    1 => **un,
-                    2 => **deux,
-                    3 => **trois,
-                    _ => **trois, 
+                    1 => Some(&(**un)),
+                    2 => Some(&(**deux)),
+                    3 => Some(&(**trois)),
+                    _ => Some(&(**trois)), 
                 }
             }
         }
@@ -81,11 +84,11 @@ impl Brique {
         let mut vecteur_pre_sortie = Vec::new();
 
         if let Brique::Produit(vecteur_sommes) = self {
-            if let Brique::Somme(vecteur_membres_1) = *vecteur_sommes[0] {
-                if let Brique::Somme(vecteur_membres_2) = *vecteur_sommes[1] {
-                    for a in *vecteur_membres_1.iter() {
-                        for b in *vecteur_membres_2.iter() {
-                            vecteur_pre_sortie.push(Box::new(Brique::Produit(vec![a, b])));
+            if let Brique::Somme(vecteur_membres_1) = &*vecteur_sommes[0] {
+                if let Brique::Somme(vecteur_membres_2) = &*vecteur_sommes[1] {
+                    for a in (*vecteur_membres_1).iter() {
+                        for b in (*vecteur_membres_2).iter() {
+                            vecteur_pre_sortie.push(Box::new(Brique::Produit(vec![a.clone(), b.clone()])));
                         }
                     }
                 } 
