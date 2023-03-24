@@ -87,7 +87,7 @@ impl AlgorithmeEuclide {
     fn etendu(&self) -> Result<AlgoEuclideEtendu, String> {
         if pgcd(self.dividende, self.diviseur) == 1 {
             //on positionne i sur l'avant derniere ligne:
-            let i: usize;
+            let mut i: usize = 0;
             while i != self.lignes.len()-2 as usize {
                 i += 1;
             }
