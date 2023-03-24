@@ -60,8 +60,26 @@ impl AlgorithmeEuclide {
             dividende = ligne.get(1).unwrap().get(0).unwrap().get(0).unwrap().valeur_entiere().unwrap();
             diviseur = ligne.get(1).unwrap().get(1).unwrap().valeur_entiere().unwrap();
             self.lignes.push((ligne).clone());
-            ligne.get(1).unwrap().get(1).unwrap().valeur_entiere().unwrap() != 1
+            ligne.get(1).unwrap().get(1).unwrap().valeur_entiere().unwrap() != 0
         } {}
              
     }
+
+    fn etendu(&self) -> Result<AlgoEuclideEtendu, String> {
+        if 
+    }
+}
+
+fn pgcd(dividende: i64, diviseur: i64) -> i64 {
+    let mut algorithme = AlgorithmeEuclide {
+        lignes: Vec::new(),
+        dividende: dividende,
+        diviseur: diviseur,
+    };
+    algorithme.calcule();
+
+    //on veut le reste de l'avant derniere ligne
+    let ligne = algorithme.lignes[algorithme.lignes.len() - 1];
+    let pgcd = ligne.get(1).unwrap().get(1).unwrap().valeur_entiere().unwrap();
+    pgcd
 }
