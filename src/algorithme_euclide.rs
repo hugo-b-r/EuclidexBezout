@@ -66,7 +66,11 @@ impl AlgorithmeEuclide {
     }
 
     fn etendu(&self) -> Result<AlgoEuclideEtendu, String> {
-        if 
+        if pgcd(dividende, diviseur) == 1 {
+            
+        } else {
+            Err(String::from("nombres non premiers entre eux"))
+        }
     }
 }
 
