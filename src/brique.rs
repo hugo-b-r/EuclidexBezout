@@ -22,7 +22,7 @@ impl <'a> Iterator for IterBrique<'a> {
         } else {
             self.pos += 1;
 
-            self.inner.get(self.pos -1)
+            Some(&self.inner.get(self.pos -1))
         }
     }
 }
@@ -37,6 +37,24 @@ impl Brique {
             Division(vector) => vector.len(),
             DivisionEuclidienne(_, _, _) => 3 as usize,
         } 
+    }
+
+    fn get(&self, rang: usize) -> Self {
+        match self {
+            Entier(entier) => Brique::Entier(*entier),
+            Produit(vector) => *vector[rang],
+            Somme(vector) => *vector[rang],
+            Difference(vector) => *vector[rang],
+            Division(vector) => *vector[rang],
+            DivisionEuclidienne(un, deux, trois) => {
+                match rang {
+                    1 => **un,
+                    2 => **deux,
+                    3 => **trois,
+                    _ => **trois, 
+                }
+            }
+        }
     }
 
     fn valeur(self: &Self, rang: usize) -> Result<i64, String> {
