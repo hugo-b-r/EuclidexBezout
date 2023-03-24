@@ -68,6 +68,13 @@ impl Brique {
         }
     }
 
+    fn iter<'a>(&'a self) -> IterBrique<'a> {
+        IterBrique {
+            inner:  self,
+            pos: 0,
+        }
+    }
+
     //use with care - utiliser avec attention,
     //pas de sous somme de produit de rien du tout
     fn developpe(self: &Self) -> Result<Self, String> {
