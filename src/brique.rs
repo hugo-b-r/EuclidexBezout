@@ -2,14 +2,34 @@ use crate::brique::Brique::*;
 
 pub enum Brique {
     Entier(i64),
-    Produit(Box<Self>, Box<Self>),
-    Somme(Box<Self>, Box<Self>),
-    Difference(Box<Self>, Box<Self>),
-    Division(Box<Self>, Box<Self>),
+    Produit(Vec<Box<Self>>),
+    Somme(Vec<Box<Self>>),
+    Difference(Vec<Box<Self>>),
+    Division(Vec<Box<Self>>),
     DivisionEuclidienne(Box<Self>, Box<Self>, Box<Self>),
 }
 
+struct IterBrique<'a> {
+    inner: &'a Brique,
+    pos: usize,
+}
+
+impl <'a> Iterator for IterBrique<'a> {
+    type Item = &'a Brique;
+    fn next(&mut self) -> Option<Self::Item> {
+        if self.pos>= self.inner.len() {
+            None
+        } else {
+            self.pos += 1;
+
+            self.inner.get(self.pos -1)
+        }
+    }
+}
+
 impl Brique {
+
+
     fn valeur(self: &Self, rang: usize) -> Result<i64, String> {
         match self {
             Entier(valeur) => Ok( *valeur ),
