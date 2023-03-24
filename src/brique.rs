@@ -28,7 +28,16 @@ impl <'a> Iterator for IterBrique<'a> {
 }
 
 impl Brique {
-
+    fn len(&self) -> usize {
+        match self {
+            Entier(i64) => 1 as usize,
+            Produit(vector) => vector.len(),
+            Somme(vector) => vector.len(),
+            Difference(vector) => vector.len(),
+            Division(vector) => vector.len(),
+            DivisionEuclidienne(_, _, _) => 3 as usize,
+        } 
+    }
 
     fn valeur(self: &Self, rang: usize) -> Result<i64, String> {
         match self {
