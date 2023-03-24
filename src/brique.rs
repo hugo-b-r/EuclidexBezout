@@ -120,6 +120,21 @@ impl Brique {
         Ok( sortie )
     }
 
+    pub fn entier(&self, rang: usize) -> Option<i64> {
+        let i = 0;
+        for brique in self.iter() {
+            if let Brique::Entier(nombre) = *brique {
+                if i == rang as i32 {
+                    return Some(nombre);
+                } else {
+                    i += 1;
+                }
+            }
+        }
+        //if no return
+        None
+    }
+
     pub fn somme(&self, rang: usize) -> Option<Self> {
         let i = 0;
         for brique in self.iter() {
