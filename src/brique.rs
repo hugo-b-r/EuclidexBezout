@@ -121,7 +121,7 @@ impl Brique {
     }
 
     pub fn entier(&self, rang: usize) -> Option<i64> {
-        let i = 0;
+        let mut i = 0;
         for brique in self.iter() {
             if let Brique::Entier(nombre) = *brique {
                 if i == rang as i32 {
@@ -136,7 +136,7 @@ impl Brique {
     }
 
     pub fn somme(&self, rang: usize) -> Option<Self> {
-        let i = 0;
+        let mut i = 0;
         for brique in self.iter() {
             if let Brique::Somme(vecteur) = *brique {
                 if i == rang as i32 {
@@ -151,7 +151,7 @@ impl Brique {
     }
 
     pub fn produit(&self, rang: usize) -> Option<Self> {
-        let i = 0;
+        let mut i = 0;
         for brique in self.iter() {
             if let Brique::Produit(vecteur) = *brique {
                 if i == rang as i32 {
@@ -166,7 +166,7 @@ impl Brique {
     }
 
     pub fn difference(&self, rang: usize) -> Option<Self> {
-        let i = 0;
+        let mut i = 0;
         for brique in self.iter() {
             if let Brique::Difference(vecteur) = *brique {
                 if i == rang as i32 {
@@ -181,7 +181,7 @@ impl Brique {
     }
 
     pub fn division(&self, rang: usize) -> Option<Self> {
-        let i = 0;
+        let mut i = 0;
         for brique in self.iter() {
             if let Brique::Division(vecteur) = *brique {
                 if i == rang as i32 {
