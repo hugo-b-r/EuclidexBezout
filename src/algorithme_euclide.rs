@@ -81,13 +81,23 @@ impl AlgorithmeEuclide {
             while i != self.lignes.len()-2 as usize {
                 i += 1;
             }
-            let reste = self.lignes[i].somme(0).unwrap().entier(0).unwrap();
+            let dividende = self.lignes[i].entier(0).unwrap();
             let produit = self.lignes[i].produit(0).unwrap();
-            
+            let ligne = Brique::Egalite(vec![
+                Box::new(Brique::Entier(1)),
+                Box::new(
+                    Brique::Difference(vec![
+                        Box::new(Brique::Entier(dividende)),
+                        Box::new(produit)
+                    ])
+                )
+            ])
+
             //3 etapes: 
             //1: on remplace
             //2: on developpe
             //3 on rassemble
+            Ok( ligne)
 
         } else {
             Err(String::from("nombres non premiers entre eux"))
