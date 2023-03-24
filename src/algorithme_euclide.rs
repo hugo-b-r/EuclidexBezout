@@ -6,6 +6,11 @@ struct AlgorithmeEuclide {
     diviseur: i64,
 }
 
+struct AlgoEuclideEtendu {
+    lignes: Vec<Brique>,
+    algorithme_original: AlgorithmeEuclide,
+}
+
 fn division_euclidienne(a: i64, b: i64) -> Brique {
     let mut c;
     let mut d;
