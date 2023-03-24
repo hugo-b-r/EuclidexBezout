@@ -57,25 +57,6 @@ impl Brique {
         }
     }
 
-    fn valeur(self: &Self, rang: usize) -> Result<i64, String> {
-        match self {
-            Entier(valeur) => Ok( *valeur ),
-            Produit(vecteur) => {
-                vecteur[rang].valeur(0)
-            },
-            Somme(vecteur) => {
-                vecteur[rang].valeur(0)
-            },
-            Difference(vecteur) => {
-                vecteur[rang].valeur(0)
-            },
-            Division(vecteur) => {
-                vecteur[rang].valeur(0)
-            },
-            DivisionEuclidienne(_, _, _) => Err(String::from("Valeur impossible pour une division euclidienne")),
-        }
-    }
-
     fn longueur(self: &Self) -> usize {
         match self {
             Entier(_) => 1,
@@ -88,53 +69,8 @@ impl Brique {
     }
 
     fn developpe(self: &Self) -> Result<Self, String> {
-        if let Brique::Produit(brique_1, brique_2) = self {
-            if let Brique::Somme(entier_1, entier_2) = &**brique_1 {
-                if let Brique::Somme(entier_3, entier_4) = &**brique_2 {
-                    return Ok(
-                        Brique::Produit(
-                            Box::new(
-                                Brique::Produit(
-                                    Box::new(
-                                        Brique::Somme(
-                                            Box::new(Brique::Entier(entier_1.valeur(0).unwrap())),
-                                            Box::new(Brique::Entier(entier_3.valeur(0).unwrap())),
-                                        )
-                                    ),
-                                    Box::new(
-                                        Brique::Somme(
-                                            Box::new(Brique::Entier(entier_1.valeur(0).unwrap())),
-                                            Box::new(Brique::Entier(entier_4.valeur(0).unwrap())),
-                                        )
-                                    )
-                                )
-                            ),
-                            Box::new(
-                                Brique::Produit(
-                                    Box::new(
-                                        Brique::Somme(
-                                            Box::new(Brique::Entier(entier_2.valeur(0).unwrap())),
-                                            Box::new(Brique::Entier(entier_3.valeur(0).unwrap())),
-                                        )
-                                    ),
-                                    Box::new(
-                                        Brique::Somme(
-                                            Box::new(Brique::Entier(entier_2.valeur(0).unwrap())),
-                                            Box::new(Brique::Entier(entier_4.valeur(0).unwrap())),
-                                        )
-                                    )
-                                )
-                            )
-                        )
-                    );
-                } else {
-                    Err(String::from("deuxieme facteur n'est pas un produit"))
-                }
-            } else {
-                Err(String::from("premier facteur n'est pas un produit"))
-            }
-        } else {
-            Err(String::from("n'est pas un produit"))
+        if let Brique::Produit(vecteur_sommes) = self {
+
         }
     }
 }
