@@ -138,9 +138,9 @@ impl Brique {
     pub fn somme(&self, rang: usize) -> Option<Self> {
         let mut i = 0;
         for brique in self.iter() {
-            if let Brique::Somme(vecteur) = *brique {
+            if let Brique::Somme(vecteur) = (*brique).clone() {
                 if i == rang as i32 {
-                    return Some(*brique);
+                    return Some((*brique).clone());
                 } else {
                     i += 1;
                 }
@@ -153,9 +153,9 @@ impl Brique {
     pub fn produit(&self, rang: usize) -> Option<Self> {
         let mut i = 0;
         for brique in self.iter() {
-            if let Brique::Produit(vecteur) = *brique {
+            if let Brique::Produit(vecteur) = (*brique).clone() {
                 if i == rang as i32 {
-                    return Some(*brique);
+                    return Some((*brique).clone());
                 } else {
                     i += 1;
                 }
@@ -168,9 +168,9 @@ impl Brique {
     pub fn difference(&self, rang: usize) -> Option<Self> {
         let mut i = 0;
         for brique in self.iter() {
-            if let Brique::Difference(vecteur) = *brique {
+            if let Brique::Difference(vecteur) = (*brique).clone() {
                 if i == rang as i32 {
-                    return Some(*brique);
+                    return Some((*brique).clone());
                 } else {
                     i += 1;
                 }
@@ -183,9 +183,9 @@ impl Brique {
     pub fn division(&self, rang: usize) -> Option<Self> {
         let mut i = 0;
         for brique in self.iter() {
-            if let Brique::Division(vecteur) = *brique {
+            if let Brique::Division(vecteur) = (*brique).clone() {
                 if i == rang as i32 {
-                    return Some(*brique);
+                    return Some((*brique).clone());
                 } else {
                     i += 1;
                 }
