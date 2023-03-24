@@ -125,7 +125,7 @@ fn pgcd(dividende: i64, diviseur: i64) -> i64 {
     algorithme.calcule();
 
     //on veut le reste de l'avant derniere ligne
-    let ligne = algorithme.lignes[algorithme.lignes.len() - 1];
+    let ligne = algorithme.lignes[algorithme.lignes.len() - 1].clone();
     let pgcd = ligne.get(1).unwrap().get(1).unwrap().valeur_entiere().unwrap();
     pgcd
 }
