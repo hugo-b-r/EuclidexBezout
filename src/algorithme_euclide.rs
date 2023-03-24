@@ -76,7 +76,17 @@ impl AlgorithmeEuclide {
 
     fn etendu(&self) -> Result<AlgoEuclideEtendu, String> {
         if pgcd(dividende, diviseur) == 1 {
+            //on positionne i sur l'avant derniere ligne:
+            let i;
+            while i != self.lignes.len()-2 {
+                i += 1;
+            }
             
+            //3 etapes: 
+            //1: on remplace
+            //2: on developpe
+            //3 on rassemble
+
         } else {
             Err(String::from("nombres non premiers entre eux"))
         }
