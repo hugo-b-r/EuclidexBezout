@@ -43,7 +43,7 @@ impl Brique {
         } 
     }
 
-    fn get(&self, rang: usize) -> Option<&Self> {
+    pub fn get(&self, rang: usize) -> Option<&Self> {
         let rang_ici = &rang;
         match self {
             Entier(_)                             =>     Some(&self),
@@ -60,6 +60,14 @@ impl Brique {
                 }
             },
             Egalite(vecteur)   => Some(vecteur.get(rang).unwrap()),
+        }
+    }
+
+    pub fn valeur_entiere(&self) -> Result<i64, String> {
+        if let Brique::Entier(entier) = self {
+            Ok( *entier )
+        } else {
+            Err(String::from("pas un entier"))
         }
     }
 

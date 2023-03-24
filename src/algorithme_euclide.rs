@@ -2,8 +2,8 @@ use super::Brique;
 
 struct AlgorithmeEuclide {
     lignes: Vec<Brique>,
-    a: i64,
-    b: i64,
+    dividende: i64,
+    diviseur: i64,
 }
 
 fn division_euclidienne(a: i64, b: i64) -> Brique {
@@ -43,4 +43,20 @@ fn division_euclidienne(a: i64, b: i64) -> Brique {
             )
         ]
     )
+}
+
+impl AlgorithmeEuclide {
+    fn calcule(&mut self) {
+        let mut ligne: Brique;
+        let mut dividende = self.dividende;
+        let mut diviseur = self.diviseur;
+        while {
+            ligne = division_euclidienne(dividende, diviseur);
+            dividende = ligne.get(1).unwrap().get(0).unwrap().get(0).unwrap().valeur_entiere().unwrap();
+            diviseur = ligne.get(1).unwrap().get(1).unwrap().valeur_entiere().unwrap();
+            self.lignes.push((ligne).clone());
+            ligne.get(1).unwrap().get(1).unwrap().valeur_entiere().unwrap() != 1
+        } {}
+             
+    }
 }
